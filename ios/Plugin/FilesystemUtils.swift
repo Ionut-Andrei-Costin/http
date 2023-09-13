@@ -41,9 +41,12 @@ class FilesystemUtils {
     }
     
     let directory = FilesystemUtils.getDirectory(directory: directoryOption)
-    
-    guard let dir = FileManager.default.urls(for: directory, in: .userDomainMask).first else {
+    let fileManager = FileManager.default
+    guard let dir = fileManager.urls(for: directory, in: .userDomainMask).first else {
       return nil
+    }
+    if !fileManager.fileExists(atPath: dir.path) {
+      try? fileManager.createDirectory(at: dir, withIntermediateDirectories: true)
     }
     
     return dir.appendingPathComponent(path)
