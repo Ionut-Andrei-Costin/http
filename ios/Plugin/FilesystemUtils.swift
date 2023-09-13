@@ -22,6 +22,10 @@ class FilesystemUtils {
       return .cachesDirectory
     case "DOWNLOADS":
       return .downloadsDirectory
+    case "LIBRARY":
+       return .libraryDirectory
+    case "APPLICATION SUPPORT":
+       return .applicationSupportDirectory
     default:
       return .documentDirectory
     }
